@@ -16,11 +16,19 @@ final class UserAuthentication {
 	public boolean validateUsername(String user){
 		
 		if(!user.isEmpty() && user  != null ){
-			 Pattern pattern = Pattern.compile("[^A-Za-z0-9@.]");
-		 	 Matcher m = pattern.matcher(user);
-		 	 
-		 	if(m.matches()) return false;
-		 	else redirect(user);
+			 if(Pattern.matches(".*[A-Z]*.", user)){
+				 if(Pattern.matches(".*[a-z]*.", user)){
+					 if(Pattern.matches(".*[0-9]*.", user)){
+						 if(Pattern.matches(".*[@.]*.", user)){
+							 if(Pattern.matches(".*[$#%!&(]*.", user)){
+								 return false;
+							 }else{
+								 redirect(user);
+							 } 
+							 }
+					 }
+				 }
+			 }
 		 	}
 		return false;
 	}
